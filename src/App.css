@@ -1,0 +1,99 @@
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.pagination {
+  margin-bottom: 0;
+}
+
+.page-link {
+  border: none;
+  color: #6c757d;
+  padding: 0.5rem 0.75rem;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page-link:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem;
+  }
+  
+  .game-card-image {
+    height: 180px;
+  }
+  
+  .h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .game-card-image {
+    height: 160px;
+  }
+  
+  .game-title {
+    font-size: 0.9rem;
+  }
+}
+
+.dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item.active {
+  background-color: #007bff;
+}
+
+@media (max-width: 375px) {
+  .col-xs-12 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .game-card {
+    margin-bottom: 1rem;
+  }
+}
+
+.loading-skeleton {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
