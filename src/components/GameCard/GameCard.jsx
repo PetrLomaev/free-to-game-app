@@ -13,6 +13,7 @@ const GameCard = ({ game }) => {
     navigate(`/game/${game.id}`);
   };
 
+  
   return (
     <Card className="game-card h-100 shadow-sm">
       <div className="game-card-image-container">
