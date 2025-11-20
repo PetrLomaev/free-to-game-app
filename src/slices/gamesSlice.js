@@ -14,6 +14,8 @@ const initialState = {
   activeSortOption: 'not_sorted',
   availablePlatforms: [],
   availableGenres: [],
+  loading: false,
+  error: null,
 };
 
 const gamesSlice = createSlice({
@@ -28,6 +30,7 @@ const gamesSlice = createSlice({
       state.availablePlatforms = [...new Set(action.payload.map((game) => game.platform.trim()))].sort();
       state.availableGenres = [...new Set(action.payload.map((game) => game.genre.trim()))].sort();
       state.totalGames = action.payload.length;
+      state.error = null;
     },
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
@@ -85,6 +88,22 @@ const gamesSlice = createSlice({
       state.currentPage = 1;
       state.activeSortOption = 'not_sorted';
     },
+    setLoading(state, action) {
+      state.loading = action.payload;
+      if (action.payload) {
+        state.error = null;
+      }
+    },
+    setError(state, action) {
+      state.error = {
+        ...action.payload,
+        timestamp: Date.now(),
+      };
+      state.loading = false;
+    },
+    clearError(state) {
+      state.error = null;
+    },
   },
 });
 
@@ -112,6 +131,9 @@ export const {
   togglePlatformFilter,
   toggleGenreFilter,
   resetFilters,
+  setLoading,
+  setError,
+  clearError,
 } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

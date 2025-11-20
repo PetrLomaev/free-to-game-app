@@ -23,6 +23,10 @@ const GameCard = ({ game }) => {
           alt={game.title}
           className="game-card-image"
           onClick={handleCardClick}
+          onError={(e) => {
+            e.target.src = '/images/placeholder-image.jpg';
+            e.target.alt = 'Изображение не загружено';
+          }}
         />
       </div>
       <Card.Body className="d-flex flex-column">

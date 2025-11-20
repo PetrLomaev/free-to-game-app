@@ -4,12 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   setGames,
   setCurrentPage,
+  setLoading,
+  setError,
+  clearError,
 } from '../slices/gamesSlice';
 import '../App.css';
+import api from '../utils/api';
 import { Pagination, Row, Col } from 'react-bootstrap';
 import FilterField from '../components/FilterField/FilterField';
 import SortDropdown from '../components/SortDropdown/SortDropdown';
 import GamesField from '../components/GamesField/GamesField';
+import AlertError from '../components/AlertError/AlertError';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -17,9 +23,12 @@ const HomePage = () => {
     currentPage,
     itemsPerPage,
     totalGames,
+    loading,
+    error,
   } = useSelector((state) => state.games);
 
   const totalOfPagesButton = Math.ceil(totalGames / itemsPerPage);
+
   function consecutiveNumbers(n) {
     const arr = [];
     for (let i = 1; i <= n; i++) {
@@ -28,27 +37,41 @@ const HomePage = () => {
     return arr;
   };
 
-  useEffect(() => {
-    const getGamesData = async () => {
-      try {
-        const response = await axios.get('/freetogame-api/api/games');
-        dispatch(setGames(response.data));
-      } catch (error) {
-        console.log(error);
-        if (error.code === 'ERR_NETWORK') {
-          throw new Error('Запрос не сработал?');
-        }
-        if (error.response.status >= 500) {
-          throw new Error('Запрос не сработал? Время ожидания истекло?');
-        }
-      }
-    };
+  const getGamesData = async () => {
+    dispatch(setLoading(true));
+    try {
+      const response = await axios.get('/freetogame-api/api/games', {
+        timeout: 15000,
+      });
+      dispatch(setGames(response.data));
+    } catch (err) {
+      console.error('Error requesting games: ', err);
+      const serializableError = {
+        message: err.message,
+        code: err.code,
+        responseStatus: err.response ? err.response.status: null,
+      };
+      dispatch(setError(serializableError));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
+
+  useEffect(() => {
     getGamesData();
   }, [dispatch]);
 
   const handleSetCurrentPage = (numberOfPage) => {
     dispatch(setCurrentPage(numberOfPage));
+  };
+
+  const handleRetry = () => {
+    getGamesData();
+  };
+
+  const handleCloseError = () => {
+    dispatch(clearError());
   };
 
   return (
@@ -62,20 +85,32 @@ const HomePage = () => {
             <h1 className="h2 mb-0">Free-to-Play Games</h1>
             <SortDropdown />
           </div>
-          <GamesField />
-          <div className="d-flex justify-content-center mt-5">
-            <Pagination>
-              {consecutiveNumbers(totalOfPagesButton).map((num) => (
-                <Pagination.Item
-                  key={num}
-                  active={num === currentPage}
-                  onClick={() => handleSetCurrentPage(num)}
-                >
-                  {num}
-                </Pagination.Item>
-              ))}
-            </Pagination>
-          </div>
+          <AlertError
+            error={error}
+            onRetry={handleRetry}
+            onClose={handleCloseError}
+            className="mb-4"
+          />
+          {loading ? (
+            <LoadingSpinner message="Загрузка списка игр..." />
+          ) : (
+            <>
+              <GamesField />
+              <div className="d-flex justify-content-center mt-5">
+                <Pagination>
+                  {consecutiveNumbers(totalOfPagesButton).map((num) => (
+                    <Pagination.Item
+                      key={num}
+                      active={num === currentPage}
+                      onClick={() => handleSetCurrentPage(num)}
+                    >
+                      {num}
+                    </Pagination.Item>
+                  ))}
+                </Pagination>
+              </div>
+            </>
+          )}
         </Col>
       </Row>
     </div>
