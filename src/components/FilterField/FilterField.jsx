@@ -4,14 +4,17 @@ import { resetFilters, toggleGenreFilter, togglePlatformFilter } from '../../sli
 import { Accordion, Badge, Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { X } from 'react-bootstrap-icons';
 
+const headerFiltersText = 'Фильтры';
+const buttonResetFiltersText = 'Сбросить';
+const headerPlatformsText = 'ПЛАТФОРМЫ';
+const headerGenresText = 'ЖАНРЫ';
+
 const FilterField = () => {
   const dispatch = useDispatch();
 
-  const {
-    activeFilters,
-    availablePlatforms,
-    availableGenres
-  } = useSelector((state) => state.games);
+  const { activeFilters, availablePlatforms, availableGenres } = useSelector(
+    (state) => state.games
+  );
 
   const handlePlatformFilter = (filterOption) => {
     dispatch(togglePlatformFilter(filterOption));
@@ -30,14 +33,11 @@ const FilterField = () => {
   return (
     <Card className="mb-4">
       <Card.Header className="d-flex justify-content-between align-items-center">
-        <h5 className="mb-0">Фильтры</h5>
+        <h5 className="mb-0">{headerFiltersText}</h5>
         {isAnyFilterActive && (
-          <Button
-            variant="outline-danger"
-            size="sm"
-            onClick={() => handleResetFilters()}>
+          <Button variant="outline-danger" size="sm" onClick={() => handleResetFilters()}>
             <X className="me-1" />
-            Сбросить
+            {buttonResetFiltersText}
           </Button>
         )}
       </Card.Header>
@@ -45,7 +45,7 @@ const FilterField = () => {
         <Accordion alwaysOpen>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
-              PLATFORMS
+              {headerPlatformsText}
               {activeFilters.platforms.length > 0 && (
                 <Badge bg="primary" className="ms-2">
                   {activeFilters.platforms.length}
@@ -73,7 +73,7 @@ const FilterField = () => {
           </Accordion.Item>
           <Accordion.Item eventKey="1">
             <Accordion.Header>
-              GENRES
+              {headerGenresText}
               {activeFilters.genres.length > 0 && (
                 <Badge bg="primary" className="ms-2">
                   {activeFilters.genres.length}

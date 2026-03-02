@@ -1,16 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import './GamesField.css';
 import { Row, Col } from 'react-bootstrap';
 
 import GameCard from '../GameCard/GameCard';
 
 const GamesField = () => {
-  const {
-    games,
-    currentPage,
-    itemsPerPage,
-  } = useSelector((state) => state.games);
+  const { games, currentPage, itemsPerPage } = useSelector((state) => state.games);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

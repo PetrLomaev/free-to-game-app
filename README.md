@@ -1,12 +1,49 @@
-# React + Vite
+# Project "Free-To-Play Games website interface"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+Displays Free-To-Play Games using data received from the API https://www.freetogame.com.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+***UPD: The great and terrible Roskomnadzor has blocked (slowed down) the Free-To-Play Games API. If you experience data loading issues (API blocking), you can try using a VPN or changing your proxy settings.***
 
-## Expanding the ESLint configuration
+The following usage functions are available:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Includes a main page with a list of games and a page of the current game
+
+- The game list can be filtered by platform and genre
+
+- The game list can be sorted by release date.
+
+The task according to which the project was completed: https://github.com/avito-tech/frontend-trainee-assignment-2023
+
+
+## Technologies used
+
+- React, react-bootstrap
+
+- Redux, reduxjs/toolkit
+
+- react-router-dom
+
+
+## Minimum System Requirements
+
+Node.js Command Line, npm
+
+
+## Install 
+
+`git clone git@github.com:PetrLomaev/free-to-game-app.git`
+
+`cd free-to-game-app`
+
+`npm install`
+
+`npm start`
+
+Open your browser and go to: http://localhost:3001
+
+If you experience data loading issues (API blocking), you can try using a VPN or changing your proxy settings.
+
+
+Render: https://free-to-game-app-petrlomaevs-projects.vercel.app/

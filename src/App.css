@@ -1,99 +1,67 @@
-#root {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem;
+.border-bottom {
+  border-bottom: 1px solid #dee2e6 !important;
 }
 
-.pagination {
-  margin-bottom: 0;
+.status-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.page-link {
-  border: none;
-  color: #6c757d;
-  padding: 0.5rem 0.75rem;
+.content-secondary {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
-.page-item.active .page-link {
-  background-color: #007bff;
-  border-color: #007bff;
+.position-sticky {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  margin-bottom: 20px;
 }
 
-.page-link:hover {
-  background-color: #e9ecef;
-  color: #495057;
+.pe-lg-4 {
+  padding-right: 1.5rem !important;
 }
 
-.badge {
-  font-weight: 500;
-  padding: 0.5rem 0.75rem;
-  border-radius: 20px;
+.ps-lg-4 {
+  padding-left: 1.5rem !important;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  #root {
-    padding: 0.5rem;
+@media (max-width: 992px) {
+  .pe-lg-4,
+  .ps-lg-4 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
-  
-  .game-card-image {
-    height: 180px;
-  }
-  
-  .h2 {
-    font-size: 1.5rem;
-  }
-}
 
-@media (max-width: 576px) {
-  .game-card-image {
-    height: 160px;
+  .position-sticky {
+    position: static;
+    max-height: none;
   }
-  
-  .game-title {
-    font-size: 0.9rem;
+
+  .status-container {
+    height: 60px;
   }
 }
 
-.dropdown-menu {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
-.dropdown-item {
-  padding: 0.5rem 1rem;
+.row.g-4 {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
 }
 
-.dropdown-item.active {
-  background-color: #007bff;
+.dropdown-toggle::after {
+  margin-left: 0.5rem;
 }
 
-@media (max-width: 375px) {
-  .col-xs-12 {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  
-  .game-card {
-    margin-bottom: 1rem;
-  }
-}
-
-.loading-skeleton {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
+h1.h3 {
+  font-weight: 600;
+  color: #333;
 }

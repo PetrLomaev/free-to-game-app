@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentGame: null,
-  loading: true,
+  loading: false,
   error: null,
 };
 
@@ -33,11 +33,6 @@ const gamePageSlice = createSlice({
   },
 });
 
-export const {
-  setGame,
-  setLoading,
-  setError,
-  clearError,
-} = gamePageSlice.actions;
+export const { setGame, setLoading, setError, clearError } = gamePageSlice.actions;
 
 export default gamePageSlice.reducer;

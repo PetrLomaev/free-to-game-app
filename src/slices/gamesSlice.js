@@ -27,7 +27,9 @@ const gamesSlice = createSlice({
       state.originalGames = action.payload;
       state.filteredGamesWithoutSorting = action.payload;
 
-      state.availablePlatforms = [...new Set(action.payload.map((game) => game.platform.trim()))].sort();
+      state.availablePlatforms = [
+        ...new Set(action.payload.map((game) => game.platform.trim())),
+      ].sort();
       state.availableGenres = [...new Set(action.payload.map((game) => game.genre.trim()))].sort();
       state.totalGames = action.payload.length;
       state.error = null;
@@ -53,7 +55,7 @@ const gamesSlice = createSlice({
           });
         }
         state.games = gamesCopy;
-      };
+      }
       state.totalGames = state.games.length;
       state.currentPage = 1;
     },
@@ -111,11 +113,11 @@ const applyFilters = (state) => {
   let filteredGames = [...state.originalGames];
   if (state.activeFilters.platforms.length > 0) {
     filteredGames = filteredGames.filter((game) =>
-      state.activeFilters.platforms.includes(game.platform));
+      state.activeFilters.platforms.includes(game.platform)
+    );
   }
   if (state.activeFilters.genres.length > 0) {
-    filteredGames = filteredGames.filter((game) =>
-      state.activeFilters.genres.includes(game.genre));
+    filteredGames = filteredGames.filter((game) => state.activeFilters.genres.includes(game.genre));
   }
   state.games = filteredGames;
   state.filteredGamesWithoutSorting = filteredGames;

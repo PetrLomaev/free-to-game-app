@@ -1,26 +1,15 @@
-import React from "react";
-import { Spinner, Placeholder } from "react-bootstrap";
+import React from 'react';
+import { Spinner } from 'react-bootstrap';
 
-const LoadingSpinner = ({
-  message = 'Загрузка...',
-  size = 'lg',
-  centered = true,
-}) => {
+const spanLoadingText = 'Загрузка...';
+
+const LoadingSpinner = ({ message = spanLoadingText }) => {
   return (
-    <div className={`d-flex flex-column align-items-${centered ? 'center' : 'start'} justify-content-center p-4`}>
-      <Spinner
-        animation="border"
-        role="status"
-        size={size}
-        className={centered ? '' : 'mb-2'}
-      >
-        <span className="visually-hidden">Загрузка...</span>
+    <div className="d-flex align-items-center justify-content-center w-100">
+      <Spinner animation="border" role="status" size="md" className="me-3">
+        <span className="visually-hidden">{spanLoadingText}</span>
       </Spinner>
-      {message && (
-        <Placeholder as="p" className={`mt-2 text-muted ${centered ? 'text-center' : ''}`}>
-          {message}
-        </Placeholder>
-      )}
+      {message && <span className="text-muted small">{message}</span>}
     </div>
   );
 };
