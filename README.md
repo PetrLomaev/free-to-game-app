@@ -46,4 +46,6 @@ Open your browser and go to: http://localhost:3001
 If you experience data loading issues (API blocking), you can try using a VPN or changing your proxy settings.
 
 
-Render: https://free-to-game-app-petrlomaevs-projects.vercel.app/
+## Link to deployed application:
+
+https://free-to-game-app-petrlomaevs-projects.vercel.app/

@@ -49,7 +49,7 @@ const GamePage = () => {
 
     try {
       const response = await axios.get(`/freetogame-api/api/game?id=${id}`, {
-        timeout: 10000,
+        timeout: 15000,
       });
       dispatch(setGame(response.data));
       localStorage.setItem(`game-${id}`, JSON.stringify(response.data));
